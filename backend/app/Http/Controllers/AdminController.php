@@ -40,7 +40,16 @@ class AdminController extends Controller
     public function pending(): JsonResponse
     {
         $appointments = Appointment::pending()
-            ->orderByRaw("FIELD(urgence, 'critique', 'urgent', 'moyen', 'faible', 'normal')")
+            ->orderByRaw("
+                CASE urgence
+                    WHEN 'critique' THEN 1
+                    WHEN 'urgent' THEN 2
+                    WHEN 'moyen' THEN 3
+                    WHEN 'faible' THEN 4
+                    WHEN 'normal' THEN 5
+                    ELSE 6
+                END
+            ")
             ->orderBy('date_rdv')
             ->orderBy('heure_rdv')
             ->get()
