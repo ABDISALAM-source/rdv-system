@@ -21,6 +21,7 @@ export default function AppointmentModal({ onClose }) {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [refNum, setRefNum] = useState(null)
+  const [emailSent, setEmailSent] = useState(false)
 
   const [form, setForm] = useState({
     nom: '', prenom: '', email: '', telephone: '',
@@ -70,8 +71,15 @@ export default function AppointmentModal({ onClose }) {
       }
       const res = await api.post('/appointments', payload)
       setRefNum(res.data.data.id)
+      setEmailSent(Boolean(res.data.data.email_sent))
       setSubmitted(true)
-      toast.success('Rendez-vous enregistré avec succès !')
+      if (res.data.data.email_sent) {
+        toast.success('Rendez-vous enregistré avec succès !')
+      } else {
+        toast('Rendez-vous enregistré, mais l’email de confirmation n’a pas été envoyé.', {
+          icon: '⚠️',
+        })
+      }
     } catch (err) {
       if (err.response?.status === 409) {
         toast.error('Ce créneau vient d\'être réservé. Veuillez en choisir un autre.')
@@ -116,9 +124,16 @@ export default function AppointmentModal({ onClose }) {
             color: 'var(--cyan)', marginBottom: 16,
           }}>#{String(refNum).padStart(6, '0')}</div>
           <p style={{ color: 'var(--text-secondary)', marginBottom: 8 }}>
-            Un email de confirmation a été envoyé à
+            {emailSent
+              ? 'Un email de confirmation a été envoyé à'
+              : 'La demande a été enregistrée pour'}
           </p>
-          <p style={{ color: 'var(--cyan)', marginBottom: 32 }}>{form.email}</p>
+          <p style={{ color: 'var(--cyan)', marginBottom: 16 }}>{form.email}</p>
+          {!emailSent && (
+            <p style={{ color: '#FFD700', fontSize: '0.85rem', marginBottom: 16 }}>
+              L’envoi automatique de l’email a échoué côté serveur.
+            </p>
+          )}
           <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: 32 }}>
             Votre demande est en cours de traitement. Vous serez notifié par email de la décision.
           </p>

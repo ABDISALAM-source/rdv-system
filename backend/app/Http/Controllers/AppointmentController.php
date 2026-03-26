@@ -54,9 +54,12 @@ class AppointmentController extends Controller
             'ip_address' => $request->ip(),
         ]);
 
+        $emailSent = false;
+
         // Envoyer email de confirmation
         try {
             Mail::to($appointment->email)->send(new AppointmentConfirmation($appointment));
+            $emailSent = true;
         } catch (\Exception $e) {
             // Log l'erreur mais ne pas bloquer la création
             \Log::error('Email error: ' . $e->getMessage());
@@ -64,10 +67,13 @@ class AppointmentController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Votre rendez-vous a été enregistré avec succès. Un email de confirmation vous a été envoyé.',
+            'message' => $emailSent
+                ? 'Votre rendez-vous a été enregistré avec succès. Un email de confirmation vous a été envoyé.'
+                : 'Votre rendez-vous a été enregistré avec succès, mais l\'email de confirmation n\'a pas pu être envoyé pour le moment.',
             'data'    => [
-                'id'    => $appointment->id,
-                'token' => $appointment->token,
+                'id'         => $appointment->id,
+                'token'      => $appointment->token,
+                'email_sent' => $emailSent,
             ]
         ], 201);
     }

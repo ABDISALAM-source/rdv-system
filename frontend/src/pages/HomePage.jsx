@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import AppointmentModal from '../components/AppointmentModal'
 import ParticleField from '../components/ParticleField'
 
@@ -79,7 +80,7 @@ export default function HomePage() {
         </div>
 
         <div className="nav-actions" style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-          <a href="/admin" style={{
+          <Link to="/admin" style={{
             fontFamily: 'var(--font-display)', fontSize: '0.65rem',
             letterSpacing: 2, color: 'var(--text-muted)',
             textDecoration: 'none', textTransform: 'uppercase',
@@ -87,7 +88,7 @@ export default function HomePage() {
           }}
           onMouseEnter={e => e.target.style.color = 'var(--cyan)'}
           onMouseLeave={e => e.target.style.color = 'var(--text-muted)'}
-          >Admin</a>
+          >Admin</Link>
           <button className="btn btn-primary" onClick={() => setShowModal(true)}>
             Prendre RDV
           </button>
