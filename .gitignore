@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+.idea
+.vscode
+
+# Env
+backend/.env
+
+# Dependencies
+backend/vendor/
+frontend/node_modules/
+
+# Logs / cache / storage
+backend/storage/
+backend/bootstrap/cache/
+
+# Build
+frontend/dist/
+
+# Misc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
