@@ -125,8 +125,8 @@ export default function AdminDashboard() {
           }}>ADMIN</span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <div style={{
+        <div className="admin-topbar-actions" style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <div className="admin-user-chip" style={{
             display: 'flex', alignItems: 'center', gap: 8,
             padding: '6px 12px', background: 'rgba(0,220,255,0.05)',
             border: '1px solid var(--border-cyan)', borderRadius: 6,
@@ -194,7 +194,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Print buttons */}
-        <div style={{
+        <div className="admin-print-bar" style={{
           display: 'flex', gap: 12, marginBottom: 24, flexWrap: 'wrap',
           padding: '16px 20px', background: 'var(--bg-card)',
           border: '1px solid var(--border-cyan)', borderRadius: 12,
@@ -214,19 +214,20 @@ export default function AdminDashboard() {
           <button className="btn btn-ghost btn-sm" onClick={() => setPrintModal('pending')}>
             ⏳ En attente
           </button>
-          <button className="btn btn-ghost btn-sm" onClick={fetchAll} style={{ marginLeft: 'auto' }}>
+          <button className="btn btn-ghost btn-sm admin-refresh-btn" onClick={fetchAll} style={{ marginLeft: 'auto' }}>
             ↻ Actualiser
           </button>
         </div>
 
         {/* Tabs */}
-        <div style={{
+        <div className="admin-tabs" style={{
           display: 'flex', gap: 4, marginBottom: 24,
           background: 'var(--bg-card)', border: '1px solid var(--border-cyan)',
           borderRadius: 10, padding: 6,
         }}>
           {tabs.map(t => (
             <button
+              className="admin-tab-button"
               key={t.key}
               onClick={() => setActiveTab(t.key)}
               style={{

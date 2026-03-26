@@ -97,7 +97,7 @@ export default function AppointmentModal({ onClose }) {
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="modal-container"
+          className="modal-container modal-success"
           onClick={e => e.stopPropagation()}
           style={{ maxWidth: 500, textAlign: 'center', padding: 60 }}
         >
@@ -177,7 +177,7 @@ export default function AppointmentModal({ onClose }) {
         </div>
 
         {/* Step tabs */}
-        <div style={{
+        <div className="modal-steps" style={{
           display: 'flex', padding: '16px 32px', gap: 8,
           borderBottom: '1px solid var(--border-cyan)',
         }}>
@@ -198,10 +198,10 @@ export default function AppointmentModal({ onClose }) {
               }}>
                 {i < step ? '✓' : i + 1}
               </div>
-              <span style={{
+              <span className="step-label" style={{
                 fontSize: '0.75rem', color: i === step ? 'var(--cyan)' : 'var(--text-muted)',
                 fontFamily: 'var(--font-display)', letterSpacing: 1,
-                display: 'none', '@media(min-width:500px)': { display: 'block' },
+                display: 'none',
               }}>{s}</span>
               {i < steps.length - 1 && (
                 <div style={{
@@ -439,7 +439,7 @@ export default function AppointmentModal({ onClose }) {
           </AnimatePresence>
 
           {/* Navigation */}
-          <div style={{
+          <div className="modal-navigation" style={{
             display: 'flex', justifyContent: 'space-between', marginTop: 32,
             paddingTop: 24, borderTop: '1px solid var(--border-cyan)',
           }}>

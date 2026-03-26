@@ -78,7 +78,7 @@ export default function PrintTable({ appointments, type, onClose }) {
               {appointments.length} rendez-vous
             </div>
           </div>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          <div className="modal-actions" style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
             <button className="btn btn-primary" onClick={handlePrint}>
               🖨️ Imprimer
             </button>

@@ -64,7 +64,7 @@ export default function HomePage() {
           transition: 'all 0.4s ease',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div className="nav-brand" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{
             width: 40, height: 40, borderRadius: 8,
             background: 'linear-gradient(135deg, rgba(0,100,200,0.4), rgba(0,220,255,0.2))',
@@ -72,13 +72,13 @@ export default function HomePage() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 18,
           }}>📅</div>
-          <span style={{
+          <span className="nav-brand-text" style={{
             fontFamily: 'var(--font-display)', fontSize: '1rem',
             color: 'var(--cyan)', letterSpacing: 3, fontWeight: 700,
           }}>SYSTÈME<span style={{ color: 'rgba(0,220,255,0.5)' }}>·</span>RDV</span>
         </div>
 
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+        <div className="nav-actions" style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
           <a href="/admin" style={{
             fontFamily: 'var(--font-display)', fontSize: '0.65rem',
             letterSpacing: 2, color: 'var(--text-muted)',
@@ -175,6 +175,7 @@ export default function HomePage() {
           </motion.p>
 
           <motion.div
+            className="hero-actions"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
@@ -196,6 +197,7 @@ export default function HomePage() {
 
           {/* Stats row */}
           <motion.div
+            className="hero-stats"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}

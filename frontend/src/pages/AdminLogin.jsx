@@ -58,7 +58,7 @@ export default function AdminLogin() {
           </div>
         </div>
 
-        <div style={{
+        <div className="admin-login-card" style={{
           background: 'var(--bg-card)', border: '1px solid var(--border-cyan)',
           borderRadius: 16, padding: 40, boxShadow: 'var(--shadow-cyan)',
           position: 'relative', overflow: 'hidden',

@@ -72,7 +72,7 @@ export default function RefuseModal({ onSubmit, onClose }) {
             </span>
           </div>
 
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', marginTop: 24 }}>
+          <div className="modal-actions" style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', marginTop: 24 }}>
             <button className="btn btn-ghost" onClick={onClose}>Annuler</button>
             <button
               className="btn btn-danger"

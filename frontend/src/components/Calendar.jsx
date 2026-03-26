@@ -86,7 +86,7 @@ export default function Calendar({ onSelect, selectedDate, selectedHeure }) {
   return (
     <div>
       {/* Month navigation */}
-      <div style={{
+      <div className="calendar-nav" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         marginBottom: 20,
       }}>
@@ -120,7 +120,7 @@ export default function Calendar({ onSelect, selectedDate, selectedHeure }) {
       </div>
 
       {/* Day headers */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4, marginBottom: 8 }}>
+      <div className="calendar-day-labels" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4, marginBottom: 8 }}>
         {dayLabels.map(d => (
           <div key={d} style={{
             textAlign: 'center', fontFamily: 'var(--font-display)',
@@ -131,7 +131,7 @@ export default function Calendar({ onSelect, selectedDate, selectedHeure }) {
       </div>
 
       {/* Calendar grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4 }}>
+      <div className="calendar-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4 }}>
         {weeks.flat().map((date, i) => {
           const isCurrentMonth = isSameMonth(date, currentMonth)
           const isPast = isBefore(date, new Date()) && !isToday(date)
@@ -197,7 +197,7 @@ export default function Calendar({ onSelect, selectedDate, selectedHeure }) {
       </div>
 
       {/* Legend */}
-      <div style={{
+      <div className="calendar-legend" style={{
         display: 'flex', gap: 16, marginTop: 16,
         padding: '12px 16px', background: 'rgba(0,0,0,0.2)',
         borderRadius: 8, flexWrap: 'wrap',

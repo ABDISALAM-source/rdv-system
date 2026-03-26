@@ -70,14 +70,14 @@ export default function AppointmentTable({
                   borderLeft: `3px solid ${URGENCE_COLORS[apt.urgence] || '#666'}`,
                 }}
               >
-                <td>
+                <td data-label="Réf.">
                   <span style={{
                     fontFamily: 'var(--font-mono)', fontSize: '0.75rem',
                     color: 'var(--text-muted)',
                   }}>#{String(apt.id).padStart(6, '0')}</span>
                 </td>
 
-                <td>
+                <td data-label="Urgence">
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <div style={{
                       width: 10, height: 10, borderRadius: '50%',
@@ -92,21 +92,21 @@ export default function AppointmentTable({
                   </div>
                 </td>
 
-                <td>
+                <td data-label="Nom / Prénom">
                   <div style={{ fontWeight: 600 }}>{apt.prenom} {apt.nom}</div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                     {apt.sexe === 'homme' ? '♂' : apt.sexe === 'femme' ? '♀' : '⚧'} {apt.sexe}
                   </div>
                 </td>
 
-                <td>
+                <td data-label="Contact">
                   <div style={{ fontSize: '0.85rem' }}>{apt.email}</div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                     {apt.telephone}
                   </div>
                 </td>
 
-                <td>
+                <td data-label="Objet">
                   <div style={{ fontWeight: 500, maxWidth: 180 }}>{apt.objet}</div>
                   {apt.description && (
                     <div style={{
@@ -116,7 +116,7 @@ export default function AppointmentTable({
                   )}
                 </td>
 
-                <td>
+                <td data-label="Date & Heure">
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--cyan)' }}>
                     {format(new Date(apt.date_rdv), 'dd/MM/yyyy')}
                   </div>
@@ -125,7 +125,7 @@ export default function AppointmentTable({
                   </div>
                 </td>
 
-                <td>
+                <td data-label="Statut">
                   <span className={`statut-badge statut-${apt.statut}`}>
                     {STATUT_LABELS[apt.statut]}
                   </span>
@@ -135,7 +135,7 @@ export default function AppointmentTable({
                 </td>
 
                 {type === 'refused' && (
-                  <td>
+                  <td data-label="Motif">
                     {apt.motif_refus ? (
                       <div style={{
                         maxWidth: 200, fontSize: '0.8rem', color: 'var(--text-secondary)',
@@ -151,7 +151,7 @@ export default function AppointmentTable({
                 )}
 
                 {type === 'pending' && (
-                  <td>
+                  <td data-label="Actions">
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                       <motion.button
                         className="btn btn-success btn-sm"
