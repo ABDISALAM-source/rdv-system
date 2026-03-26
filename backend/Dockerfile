@@ -14,6 +14,13 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 COPY . /app
 
+RUN mkdir -p /app/bootstrap/cache \
+    /app/storage/framework/cache \
+    /app/storage/framework/sessions \
+    /app/storage/framework/views \
+    /app/storage/logs \
+    && chmod -R 775 /app/bootstrap/cache /app/storage
+
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 RUN chmod +x /app/start.sh
